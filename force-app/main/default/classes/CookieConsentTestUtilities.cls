@@ -4,10 +4,17 @@ public with sharing class CookieConsentTestUtilities {
     @future
     public static void createUser(){
 
-        List<Profile> profiles = [SELECT Id FROM Profile WHERE Name = 'Customer Community Profile' LIMIT 1];
+        String profileName = 'Utilisateur standard';
+        List<Profile> profiles = [SELECT Id FROM Profile WHERE Name = :profileName LIMIT 1];
         Profile profile = (profiles.size() == 1) ? profiles.get(0) : null;
 
-        User user = new User(Username = 'test@cookieconsent.com', FirstName = 'First', LastName = 'Last', Email = 'example@example.com', ProfileId = profile.Id, CompanyName = 'Test', Title ='Title', Alias = 'alias', TimeZoneSidKey = 'America/Los_Angeles', EmailEncodingKey = 'UTF-8', LanguageLocaleKey = 'en_US', LocaleSidKey = 'en_US');
+        if (profile == null) {
+            System.assert(false, String.format('Profile {0} not found', new Object[] {profileName}));
+        }
+
+        User user = new User(Username = 'test@cookieconsent.com', FirstName = 'First', LastName = 'Last', Email = 'example@example.com',
+                ProfileId = profile.Id, CompanyName = 'Test', Title ='Title', Alias = 'alias', TimeZoneSidKey = 'America/Los_Angeles',
+                EmailEncodingKey = 'UTF-8', LanguageLocaleKey = 'en_US', LocaleSidKey = 'en_US');
 
         insert user;
 
@@ -23,7 +30,7 @@ public with sharing class CookieConsentTestUtilities {
     @future
     public static void createStandardUser(){
 
-        List<Profile> profiles = [SELECT Id FROM Profile WHERE Name = 'Standard User' LIMIT 1];
+        List<Profile> profiles = [SELECT Id FROM Profile WHERE Name = 'Utilisateur standard' LIMIT 1];
         Profile profile = (profiles.size() == 1) ? profiles.get(0) : null;
 
         User user = new User(Username = 'standard@cookieconsent.com', FirstName = 'First', LastName = 'Last', Email = 'example@example.com', ProfileId = profile.Id, CompanyName = 'Test', Title ='Title', Alias = 'alias', TimeZoneSidKey = 'America/Los_Angeles', EmailEncodingKey = 'UTF-8', LanguageLocaleKey = 'en_US', LocaleSidKey = 'en_US');
