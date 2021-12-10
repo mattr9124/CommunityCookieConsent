@@ -34,6 +34,11 @@ ehthumbs.db
 [Dd]esktop.ini
 $RECYCLE.BIN/
 
+# IntelliJ stuff
+/.idea
+/IlluminatedCloud
+/CommunityCookieConsent.iml
+
 # LWC Jest
 **/__tests__/**
 

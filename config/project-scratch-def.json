@@ -1,5 +1,18 @@
 {
-  "orgName": "stephan.garcia company",
-  "edition": "Developer",
-  "features": []
+  "orgName": "Microport",
+  "edition": "Enterprise",
+  "language": "en",
+  "features": ["Communities"],
+  "settings": {
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    , "enableOotbProfExtUserOpsEnable": true
+    },
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
 }
